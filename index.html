@@ -1,13 +1,1162 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nalamaharadjan DOURE — Quality Engineering Leader</title>
+  <meta name="description" content="15+ years building high-velocity quality cultures across Travel, FinTech and B2B SaaS. Founder of QEnabler. ISTQB certified. INSEAD AI alumnus." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #08081a;
+      --bg2: #06061a;
+      --blue: #3B82F6;
+      --purple: #A855F7;
+      --pink: #EC4899;
+      --cyan: #06B6D4;
+      --green: #10B981;
+      --amber: #F59E0B;
+      --indigo: #6366F1;
+      --slate: #94A3B8;
+      --slate-dim: #64748B;
+      --slate-dark: #475569;
+      --text: #F1F5F9;
+      --text-bright: #F8FAFC;
+      --text-mid: #CBD5E1;
+      --border: rgba(255,255,255,0.07);
+      --border-light: rgba(255,255,255,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0f0f24; }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+    /* ── Keyframes ── */
+    @keyframes blink { 0%,100% { opacity:1 } 50% { opacity:0 } }
+    @keyframes pulse-glow { 0%,100% { box-shadow: 0 0 20px rgba(59,130,246,.27) } 50% { box-shadow: 0 0 40px rgba(168,85,247,.4) } }
+
+    /* ── Header ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,8,26,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-light);
+      height: 64px;
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 100%;
+    }
+    .logo {
+      font-weight: 800; font-size: 16px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+    nav { display: flex; gap: 28px; align-items: center; }
+    .nav-link {
+      color: var(--slate); text-decoration: none;
+      font-size: 14px; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+    #lang-toggle {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      padding: 5px 14px; border-radius: 20px;
+      cursor: pointer; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.05em; transition: all 0.2s;
+      font-family: inherit;
+    }
+    #lang-toggle:hover { background: rgba(255,255,255,0.1); }
+    #nav-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      color: var(--slate); font-size: 22px;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .blob {
+      position: absolute; border-radius: 50%; pointer-events: none;
+    }
+    .blob-blue {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,.12) 0%, transparent 70%);
+      top: 10%; left: -10%;
+    }
+    .blob-purple {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(168,85,247,.1) 0%, transparent 70%);
+      bottom: 10%; right: -10%;
+    }
+    .hero-content { max-width: 900px; position: relative; z-index: 1; }
+    .hero-title {
+      font-size: 64px; font-weight: 900;
+      line-height: 1.1; letter-spacing: -0.02em;
+      margin: 0 0 16px; color: var(--text-bright);
+    }
+    .gradient-text-full {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 50%, var(--pink) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .typed-wrapper {
+      font-size: 22px; font-weight: 600;
+      min-height: 36px; margin-bottom: 24px;
+    }
+    #typed-text { color: var(--purple); }
+    #typed-cursor {
+      display: inline-block;
+      border-right: 2px solid var(--purple);
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+      width: 2px; height: 1.1em;
+      vertical-align: middle;
+    }
+    .hero-desc {
+      font-size: 18px; color: var(--slate);
+      max-width: 640px; margin: 0 auto 24px;
+      line-height: 1.65;
+    }
+    .badges {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 10px;
+      margin-bottom: 40px;
+    }
+    .badge {
+      font-size: 12px; font-weight: 600;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; padding: 6px 16px;
+      color: var(--text-mid);
+    }
+    .cta-row {
+      display: flex; gap: 16px;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .btn-glow {
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white; border: none;
+      padding: 14px 32px; border-radius: 50px;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: all 0.3s;
+      box-shadow: 0 4px 24px rgba(59,130,246,.27);
+      text-decoration: none; display: inline-block;
+      font-family: inherit;
+    }
+    .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(168,85,247,.4); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 14px 32px; border-radius: 50px;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: all 0.3s;
+      text-decoration: none; display: inline-block;
+      font-family: inherit;
+    }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); background: rgba(59,130,246,.08); }
+
+    /* ── Sections ── */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-head { margin-bottom: 48px; }
+    .section-title { font-size: 40px; font-weight: 800; color: var(--text); margin: 0 0 8px; }
+    .section-sub { font-size: 16px; color: var(--slate-dim); max-width: 600px; line-height: 1.6; }
+    .section-alt { background: rgba(255,255,255,0.01); }
+
+    /* ── Stats ── */
+    #stats-strip { padding: 0 24px 80px; }
+    .stats-grid {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 24px; padding: 32px;
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 24px 20px;
+      text-align: center;
+      flex: 1 1 130px;
+      transition: transform 0.2s;
+    }
+    .stat-card:hover { transform: translateY(-4px) scale(1.03); }
+    .stat-value {
+      font-size: 30px; font-weight: 800;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-size: 12px; color: var(--slate); margin-top: 6px; line-height: 1.4; }
+
+    /* ── About ── */
+    .about-grid { display: flex; gap: 64px; align-items: flex-start; }
+    .about-bio { flex: 2; }
+    .about-bio p { font-size: 16px; line-height: 1.85; margin-bottom: 20px; }
+    .about-bio p:first-child { color: var(--text-mid); }
+    .about-bio p:last-child { color: var(--slate); margin-bottom: 0; }
+    .about-pillars { flex: 1; display: flex; flex-direction: column; gap: 16px; min-width: 260px; }
+    .pillar-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 22px;
+      transition: transform 0.2s;
+    }
+    .pillar-card:hover { transform: translateX(6px); }
+    .pillar-icon { font-size: 24px; margin-bottom: 8px; }
+    .pillar-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .pillar-desc { font-size: 13px; color: var(--slate-dim); line-height: 1.6; }
+
+    /* ── Experience ── */
+    .exp-list { display: flex; flex-direction: column; gap: 14px; }
+    .exp-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px; overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .exp-header {
+      width: 100%; text-align: left;
+      background: none; border: none; cursor: pointer;
+      padding: 24px 28px; display: block;
+      font-family: inherit;
+    }
+    .exp-header-row {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 12px;
+    }
+    .exp-meta { flex: 1; }
+    .exp-badge-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+    .exp-badge {
+      font-size: 11px; font-weight: 700;
+      padding: 3px 10px; border-radius: 20px;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .exp-duration { font-size: 12px; color: var(--slate-dark); }
+    .exp-role { font-size: 19px; font-weight: 700; color: var(--text-bright); margin: 0; }
+    .exp-company { font-size: 15px; font-weight: 600; margin-top: 2px; }
+    .exp-type { font-size: 13px; color: var(--slate-dark); margin-top: 2px; }
+    .exp-period { font-size: 12px; color: #475569; margin-top: 4px; }
+    .exp-chevron {
+      color: var(--slate-dark); font-size: 18px;
+      flex-shrink: 0; margin-top: 4px;
+      transition: transform 0.3s; display: inline-block;
+    }
+    .exp-chevron.open { transform: rotate(180deg); }
+    .exp-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .tech-tag {
+      font-size: 11px; background: rgba(255,255,255,0.06);
+      color: var(--slate); padding: 3px 10px;
+      border-radius: 20px; border: 1px solid rgba(255,255,255,0.08);
+    }
+    .exp-details {
+      display: none;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 0 28px 24px;
+    }
+    .exp-details.open { display: block; }
+    .exp-highlights { margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .exp-highlights li { display: flex; gap: 12px; align-items: flex-start; }
+    .exp-bullet { margin-top: 5px; flex-shrink: 0; }
+    .exp-highlights span { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .skill-cat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 24px;
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .skill-cat:hover { transform: translateY(-4px); }
+    .skill-cat-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .skill-cat-icon { font-size: 22px; padding: 8px; border-radius: 12px; line-height: 1; }
+    .skill-cat-name { font-size: 15px; font-weight: 700; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      font-size: 12px; font-weight: 500;
+      background: rgba(255,255,255,0.05); color: var(--text-mid);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 5px 14px;
+      cursor: default; transition: background 0.2s;
+    }
+
+    /* ── Education ── */
+    .edu-grid { display: flex; gap: 32px; flex-wrap: wrap; }
+    .degree-card {
+      flex: 1 1 280px;
+      background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(168,85,247,.08));
+      border: 1px solid rgba(59,130,246,.2);
+      border-radius: 20px; padding: 32px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .degree-emoji { font-size: 36px; margin-bottom: 4px; }
+    .degree-label { font-size: 11px; color: var(--blue); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .degree-school { font-size: 20px; font-weight: 800; color: var(--text); }
+    .degree-name { font-size: 15px; color: var(--purple); font-weight: 600; }
+    .degree-field { font-size: 14px; color: var(--slate); }
+    .degree-year { font-size: 13px; color: var(--slate-dark); margin-top: 4px; }
+    .certs-grid { flex: 2 1 360px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+    .cert-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px 20px;
+      transition: transform 0.2s, border-color 0.3s;
+    }
+    .cert-card:hover { transform: translateY(-3px); border-color: rgba(245,158,11,.4); }
+    .cert-icon { font-size: 22px; margin-bottom: 8px; }
+    .cert-name { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.4; margin-bottom: 4px; }
+    .cert-org { font-size: 11px; color: var(--slate-dim); }
+
+    /* ── Contact ── */
+    #contact { text-align: center; border-top: 1px solid var(--border-light); padding-bottom: 100px; }
+    .contact-wave { font-size: 48px; margin-bottom: 20px; }
+    .contact-title { font-size: 40px; font-weight: 800; color: var(--text); margin: 0 0 16px; }
+    .contact-sub { font-size: 16px; color: var(--slate-dim); line-height: 1.7; max-width: 540px; margin: 0 auto 48px; }
+    .contact-links { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .contact-email {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white; text-decoration: none;
+      padding: 18px 40px; border-radius: 50px;
+      font-size: 18px; font-weight: 700;
+      box-shadow: 0 8px 32px rgba(59,130,246,.35);
+      transition: transform 0.3s;
+    }
+    .contact-email:hover { transform: translateY(-3px); }
+    .contact-linkedin {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--slate); text-decoration: none;
+      font-size: 16px; font-weight: 500;
+      padding: 12px 24px; border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+    .contact-linkedin:hover { color: var(--blue); border-color: rgba(59,130,246,.4); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border-light);
+      padding: 24px; text-align: center;
+      background: var(--bg2);
+    }
+    footer p { font-size: 13px; color: #334155; margin-bottom: 6px; }
+    footer p:last-child { font-size: 12px; color: #1e293b; margin-bottom: 0; }
+    footer a { color: var(--blue); text-decoration: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 820px) {
+      .about-grid { flex-direction: column; gap: 32px; }
+      .about-pillars { min-width: unset; }
+    }
+    @media (max-width: 640px) {
+      .hero-title { font-size: 38px; }
+      .section-title { font-size: 28px; }
+      .contact-title { font-size: 28px; }
+      header { height: auto; }
+      .header-inner { flex-wrap: wrap; min-height: 64px; padding: 12px 24px; }
+      nav {
+        flex-direction: column; gap: 0; width: 100%;
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.3s ease;
+        align-items: flex-start;
+      }
+      nav.open { max-height: 400px; padding: 8px 0 12px; }
+      nav .nav-link { display: block; padding: 10px 0; font-size: 15px; }
+      #nav-toggle { display: block; }
+      .stats-grid { padding: 20px; }
+      .exp-header { padding: 16px 18px; }
+      .exp-details { padding: 0 18px 18px; }
+    }
+
+    /* ── Scroll-reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <a href="#hero" class="logo">Nalan DOURE</a>
+    <button id="nav-toggle" aria-label="Toggle menu">☰</button>
+    <nav id="main-nav">
+      <a href="#about" class="nav-link" data-key="about">About</a>
+      <a href="#experience" class="nav-link" data-key="experience">Experience</a>
+      <a href="#skills" class="nav-link" data-key="skills">Skills</a>
+      <a href="#education" class="nav-link" data-key="education">Education</a>
+      <a href="#contact" class="nav-link" data-key="contact">Contact</a>
+      <button id="lang-toggle">FR</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="blob blob-blue"></div>
+  <div class="blob blob-purple"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Nalamaharadjan <span class="gradient-text-full">DOURE</span>
+    </h1>
+    <div class="typed-wrapper">
+      <span id="typed-text"></span><span id="typed-cursor"></span>
+    </div>
+    <p class="hero-desc" id="hero-desc">
+      15+ years building high-velocity quality cultures across Travel, FinTech and B2B SaaS. Founder of QEnabler. ISTQB certified. INSEAD AI alumnus.
+    </p>
+    <div class="badges">
+      <span class="badge">🏆 ISTQB Certified</span>
+      <span class="badge">🤖 INSEAD AI Alumnus</span>
+      <span class="badge">🚀 Founder @ QEnabler</span>
+      <span class="badge">🌍 FR · EN · Tamil</span>
+    </div>
+    <div class="cta-row">
+      <a href="#contact" class="btn-glow" id="hero-cta">Let's Connect</a>
+      <a href="#experience" class="btn-outline" id="hero-cta2">View Experience</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div id="stats-strip" class="reveal">
+  <div class="section-inner">
+    <div class="stats-grid" id="stats-grid"></div>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section id="about" class="section-alt reveal">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title" id="about-subtitle">Quality Engineering Leader &amp; AI Innovator</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-bio">
+        <p id="about-bio1"></p>
+        <p id="about-bio2"></p>
+      </div>
+      <div class="about-pillars" id="about-pillars"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience" class="reveal">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title" id="exp-title">Proven Impact</h2>
+      <p class="section-sub" id="exp-subtitle">A track record of transforming quality engineering across industries</p>
+    </div>
+    <div class="exp-list" id="exp-list"></div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills" class="section-alt reveal">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title" id="skills-title">Core Expertise</h2>
+      <p class="section-sub" id="skills-subtitle">A comprehensive toolkit for engineering quality excellence</p>
+    </div>
+    <div class="skills-grid" id="skills-grid"></div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ── -->
+<section id="education" class="reveal">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title" id="edu-title">Education &amp; Certifications</h2>
+      <p class="section-sub" id="edu-subtitle">Academic foundation and continuous professional development</p>
+    </div>
+    <div class="edu-grid" id="edu-grid"></div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="section-alt reveal">
+  <div class="section-inner">
+    <div class="contact-wave">👋</div>
+    <h2 class="contact-title" id="contact-title">Let's build quality together</h2>
+    <p class="contact-sub" id="contact-sub">Whether you're scaling your engineering team, improving quality practices, or exploring AI-driven QA — I'd love to connect and exchange ideas.</p>
+    <div class="contact-links">
+      <a href="mailto:nalanraj@gmail.com" class="contact-email">📩 nalanraj@gmail.com</a>
+      <a href="https://www.linkedin.com/in/nalamaharadjan-doure-97721727/"
+         target="_blank" rel="noopener noreferrer" class="contact-linkedin"
+         id="contact-linkedin-text">🔗 Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="footer">
+  <p>© <span id="year"></span> Nalamaharadjan DOURE · <span id="footer-rights">All rights reserved</span> · <a href="https://www.linkedin.com/in/nalamaharadjan-doure-97721727/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+  <p id="footer-sub">Open to opportunities in France and internationally · French · English · Tamil</p>
+</footer>
+
+<script>
+/* ════════════════════════════════════════
+   CONTENT DATA
+════════════════════════════════════════ */
+const CONTENT = {
+  en: {
+    nav: { about: "About", experience: "Experience", skills: "Skills", education: "Education", contact: "Contact" },
+    langToggle: "FR",
+    hero: {
+      roles: ["Head of Quality Engineering", "QA Transformation Leader", "AI Quality Strategist", "Engineering Excellence Catalyst"],
+      description: "15+ years building high-velocity quality cultures across Travel, FinTech and B2B SaaS. Founder of QEnabler. ISTQB certified. INSEAD AI alumnus.",
+      cta: "Let's Connect",
+      ctaSecondary: "View Experience",
+    },
+    stats: [
+      { value: "15+", label: "Years Experience" },
+      { value: "0→8", label: "Team Built from Scratch" },
+      { value: "−40%", label: "QA Sign-off Dependency" },
+      { value: "−25%", label: "Critical Defects" },
+      { value: "300+", label: "E2E Test Scenarios" },
+      { value: "€365M", label: "Series C Company Scaled" },
+    ],
+    about: {
+      subtitle: "Quality Engineering Leader & AI Innovator",
+      bio: "Quality Engineering Manager with 15+ years building high-velocity test cultures across Travel (Expedia/Egencia), FinTech and B2B SaaS (Ankorstore, Wakeo). Currently founder of QEnabler — an AI-driven engineering quality platform helping teams track quality maturity and surface actionable insights from test execution signals.",
+      bio2: "Expert in shift-left testing, end-to-end automation (Cypress, Playwright, Selenium) and BDD/Gherkin at scale. Track record of building QA functions from scratch, scaling teams to 8 engineers, and embedding quality mindset across multi-squad organisations. Experienced in LLM evaluation (RAGAS), CI/CD integration and DORA-aligned quality metrics connecting engineering health to business outcomes.",
+      pillars: [
+        { icon: "🏗️", title: "Build Quality Systems", desc: "Design scalable QA strategies, test pyramids and robust automation frameworks from the ground up." },
+        { icon: "🚀", title: "Scale Teams & Culture", desc: "Embed quality mindset across squads, eliminate silos and build high-performing QA functions that last." },
+        { icon: "🤖", title: "Leverage AI & Data", desc: "Use LLMs, RAGAS and DORA metrics to generate actionable quality insights and predict defect-prone areas before release." },
+      ],
+    },
+    experience: {
+      title: "Proven Impact",
+      subtitle: "A track record of transforming quality engineering across industries",
+      jobs: [
+        {
+          role: "Founder",
+          company: "VIDYANS — QEnabler",
+          type: "AI-Driven Engineering Quality Platform · SaaS",
+          period: "November 2025 – Present",
+          location: "Paris, France",
+          badge: "Now",
+          color: "#A855F7",
+          highlights: [
+            "Founded QEnabler to solve a critical market gap: engineering teams lack a unified view of quality maturity across squads, making it hard to prioritise improvements or communicate quality health to leadership.",
+            "Designing an AI-assisted SaaS platform that aggregates test execution data, CI/CD signals and defect trends to generate actionable quality maturity scorecards — targeting mid-size to large engineering organisations.",
+            "Integrating LLM-based analysis to auto-surface root-cause patterns from test failures and predict defect-prone areas before release.",
+            "Building a multi-tenant architecture with role-based dashboards for QA leads, VPs and C-level stakeholders.",
+          ],
+          tech: ["SaaS", "AI/LLM", "Product Design & Development"],
+        },
+        {
+          role: "QA Lead",
+          company: "Wakeo",
+          type: "Supply-chain Visibility SaaS",
+          period: "January 2024 – October 2025",
+          location: "Paris, France",
+          duration: "1 year 10 months",
+          badge: "2024–25",
+          color: "#3B82F6",
+          highlights: [
+            "Defined and executed Wakeo's QA strategy from the ground up for a fast-growing supply chain visibility SaaS product.",
+            "Built the End-to-End testing framework from scratch using Cypress and Gherkin, integrated into the CI/CD pipeline — reducing regression cycle time and enabling continuous delivery across multiple squads.",
+            "Designed and implemented 6 quality KPIs (defect density, escape rate, automation coverage, test effectiveness, MTTD, flakiness rate) used in quarterly product health reviews.",
+            "Set up QA roadmap and OKRs aligned with product and engineering squad goals; mentored squads on shift-left testing and E2E architecture best practices.",
+            "Embedded a Quality Assistance culture across 3 tribes, reducing dependency on dedicated QA sign-off for low-risk releases by 40%.",
+            "Led market evaluation of automation frameworks (Playwright vs Cypress vs custom tooling), driving a cost-effective and maintainable technology choice.",
+          ],
+          tech: ["Playwright", "Cypress", "Gherkin (Cucumber)", "GCP", "Docker", "GitHub Actions", "Linear", "New Relic", "Notion"],
+        },
+        {
+          role: "QA Manager",
+          company: "Ankorstore",
+          type: "B2B Marketplace · Series C · €365M raised",
+          period: "June 2021 – June 2023",
+          location: "Paris, France",
+          duration: "2 years 1 month",
+          badge: "2021–23",
+          color: "#10B981",
+          highlights: [
+            "Built the QA function from scratch at a high-growth B2B marketplace (Series C, €365M raised) — hired and scaled the team from 0 to 8 engineers in under 18 months.",
+            "Drafted and owned Ankorstore's QA strategy, establishing quality gates across 5+ product squads and defining career frameworks for the growing QA team.",
+            "Delivered the Cypress + Gherkin E2E framework from zero; grew the test suite to 300+ scenarios integrated into CircleCI, cutting post-release critical defects by ~25%.",
+            "Defined quality metrics and dashboards used by engineering leadership to monitor test effectiveness, defect escape rate and automation coverage per squad.",
+            "Embedded a Quality Assistance model across tribes, shifting QA responsibility left and reducing reliance on late-stage manual testing.",
+          ],
+          tech: ["Cypress", "Gherkin (Cucumber)", "AWS", "JavaScript", "Docker", "GitHub Actions", "Jira", "DataDog", "Notion"],
+        },
+        {
+          role: "Quality Engineering Manager",
+          company: "Egencia (Expedia Group)",
+          type: "Enterprise Corporate Travel",
+          period: "March 2017 – June 2021",
+          location: "Île-de-France, France",
+          duration: "4 years 4 months",
+          badge: "2017–21",
+          color: "#F59E0B",
+          highlights: [
+            "Led end-to-end quality for Egencia's corporate travel platform (Expedia Group company serving millions of business travellers), overseeing release quality across multiple product teams.",
+            "Managed release cycles across 3+ product lines; introduced shift-left practices and TDD that reduced regression time by ~30% via CI/CD pipeline automation (Jenkins + AWS).",
+            "Defined and maintained quality metrics dashboards for engineering leadership, tracking defect escape rates, test effectiveness and automation coverage on a weekly cadence.",
+            "Managed distributed outsourcing QA teams across multiple geographies, coordinating test execution, bug triage and daily reporting.",
+            "Collaborated directly with Expedia parent company stakeholders on cross-platform quality standards and third-party vendor integrations.",
+            "Drove product inception involvement to proactively surface quality risks early, reducing late-stage defect discovery and shortening overall release cycles.",
+          ],
+          tech: ["Selenium", "Cucumber", "AWS", "JavaScript", "Java", "Docker", "GitHub Actions", "Jira", "DataDog", "Confluence"],
+        },
+        {
+          role: "Senior Software Engineer in Test",
+          company: "Egencia",
+          type: "Enterprise Corporate Travel",
+          period: "October 2014 – March 2017",
+          location: "Île-de-France, France",
+          duration: "2 years 6 months",
+          badge: "2014–17",
+          color: "#6366F1",
+          highlights: [
+            "Designed and delivered a visual UI regression testing tool subsequently adopted into the core automation framework — eliminating an entire category of undetected UI regressions.",
+            "Led the full migration of C# tests to Cucumber Java Selenium (BDD) framework; built and mentored a team of 3 engineers, completed on time.",
+            "Upgraded the legacy automation framework to Cucumber Java Selenium, adding daily automated runs triggered on every service deployment.",
+            "Built automated reporting and alerting giving the team real-time visibility into test run health without manual intervention.",
+          ],
+          tech: ["Selenium", "Java", "C#", "BDD", "Cucumber"],
+        },
+        {
+          role: "Quality Engineer",
+          company: "Vision IT Group (@ Egencia)",
+          type: "QA Consulting",
+          period: "July 2013 – September 2014",
+          location: "France",
+          duration: "1 year 3 months",
+          badge: "2013–14",
+          color: "#94A3B8",
+          highlights: ["QA consultant embedded at Egencia; contributed to test plan execution and release quality for the corporate travel platform."],
+          tech: [],
+        },
+        {
+          role: "Consultant — Drupal Developer",
+          company: "Capgemini Consulting",
+          type: "IT Consulting · Voyages SNCF project",
+          period: "September 2011 – May 2013",
+          location: "France",
+          duration: "1 year 9 months",
+          badge: "2011–13",
+          color: "#94A3B8",
+          highlights: ["Front-end developer (Drupal) on the Voyages SNCF project; responsible for theme development, UAT validation and non-regression testing."],
+          tech: ["Drupal", "PHP", "JavaScript"],
+        },
+      ],
+    },
+    skills: {
+      title: "Core Expertise",
+      subtitle: "A comprehensive toolkit for engineering quality excellence",
+      categories: [
+        { name: "Test Automation", icon: "⚡", color: "#3B82F6", skills: ["Cypress", "Playwright", "Selenium", "Gherkin / BDD", "Cucumber", "Visual UI Testing", "C#", "Java", "JavaScript", "Python"] },
+        { name: "AI & Data Quality", icon: "🤖", color: "#A855F7", skills: ["AI Strategy", "LLM Evaluation (RAGAS)", "DORA Metrics", "Quality Analytics", "Defect Prediction", "Root-cause Analysis"] },
+        { name: "Leadership & People", icon: "👑", color: "#F59E0B", skills: ["QA Strategy", "Team Building (0→8)", "Outsourcing Management", "Quality Mindset Coaching", "OKR Setting", "Career Frameworks", "Mentoring"] },
+        { name: "Methodologies", icon: "📐", color: "#10B981", skills: ["Shift-Left Testing", "Risk-Based Testing", "TDD / BDD", "Agile / Scrum", "Quality Assistance", "Release Management", "Test Plan & Strategy"] },
+        { name: "Cloud & DevOps", icon: "☁️", color: "#06B6D4", skills: ["AWS", "GCP", "Docker", "GitHub Actions", "Jenkins", "CircleCI", "DataDog", "New Relic"] },
+        { name: "Product & Design", icon: "🎨", color: "#EC4899", skills: ["SaaS Product Development", "UI/UX Design", "Information Architecture", "Web Design Strategy", "User Interface Design"] },
+      ],
+    },
+    education: {
+      title: "Education & Certifications",
+      subtitle: "Academic foundation and continuous professional development",
+      degree: { school: "CY Cergy Paris Université", degree: "Master (M2) — IUP SIGE", field: "Electrical Engineering & Industrial Computing", year: "2009–2010" },
+      certs: [
+        { name: "ISTQB", org: "International Software Testing Qualifications Board", icon: "🏆" },
+        { name: "Transforming Your Business with AI", org: "INSEAD", icon: "🤖" },
+        { name: "Visual Elements of User Interface Design", org: "California Institute of the Arts", icon: "🎨" },
+        { name: "Web Design: Strategy & Information Architecture", org: "California Institute of the Arts", icon: "🌐" },
+        { name: "UI/UX Design Specialization — Level I", org: "California Institute of the Arts", icon: "✏️" },
+        { name: "UI/UX Design Specialization — Level II", org: "California Institute of the Arts", icon: "✏️" },
+      ],
+    },
+    contact: {
+      title: "Let's build quality together",
+      subtitle: "Whether you're scaling your engineering team, improving quality practices, or exploring AI-driven QA — I'd love to connect and exchange ideas.",
+      linkedin: "Connect on LinkedIn",
+    },
+    footer: { rights: "All rights reserved", sub: "Open to opportunities in France and internationally · French · English · Tamil" },
+  },
+
+  /* ─── FRENCH ─── */
+  fr: {
+    nav: { about: "À propos", experience: "Expérience", skills: "Compétences", education: "Formation", contact: "Contact" },
+    langToggle: "EN",
+    hero: {
+      roles: ["Responsable Quality Engineering", "Leader Transformation QA", "Stratège IA & Qualité", "Catalyseur d'Excellence Engineering"],
+      description: "15+ ans à bâtir des cultures qualité haute performance dans le Voyage, la FinTech et le B2B SaaS. Fondateur de QEnabler. Certifié ISTQB. Alumnus INSEAD AI.",
+      cta: "Me contacter",
+      ctaSecondary: "Voir mon parcours",
+    },
+    stats: [
+      { value: "15+", label: "Ans d'expérience" },
+      { value: "0→8", label: "Équipe construite de zéro" },
+      { value: "−40%", label: "Dépendance sign-off QA" },
+      { value: "−25%", label: "Défauts critiques" },
+      { value: "300+", label: "Scénarios E2E" },
+      { value: "€365M", label: "Series C accompagné" },
+    ],
+    about: {
+      subtitle: "Leader en Quality Engineering & Innovateur IA",
+      bio: "Quality Engineering Manager avec 15+ ans à construire des cultures de test haute performance dans le Voyage (Expedia/Egencia), la FinTech et le B2B SaaS (Ankorstore, Wakeo). Actuellement fondateur de QEnabler — une plateforme de qualité d'ingénierie pilotée par l'IA aidant les équipes à suivre leur maturité qualité et à extraire des insights actionnables depuis les signaux de test.",
+      bio2: "Expert en shift-left testing, automatisation end-to-end (Cypress, Playwright, Selenium) et BDD/Gherkin à grande échelle. Expérience de construction de fonctions QA from scratch, montée en puissance d'équipes jusqu'à 8 ingénieurs, et embedding de la culture qualité dans des organisations multi-squads. Expérimenté en évaluation LLM (RAGAS), intégration CI/CD et métriques DORA connectant la santé engineering aux résultats business.",
+      pillars: [
+        { icon: "🏗️", title: "Construire des systèmes qualité", desc: "Concevoir des stratégies QA scalables, des pyramides de test et des frameworks d'automatisation robustes dès le départ." },
+        { icon: "🚀", title: "Scaler équipes & culture", desc: "Intégrer la culture qualité dans les squads, éliminer les silos et construire des fonctions QA performantes et durables." },
+        { icon: "🤖", title: "Tirer parti de l'IA & des données", desc: "Utiliser LLMs, RAGAS et métriques DORA pour générer des insights qualité actionnables et prédire les zones à risque avant release." },
+      ],
+    },
+    experience: {
+      title: "Impact Prouvé",
+      subtitle: "Un parcours de transformation du quality engineering dans différents secteurs",
+      jobs: [
+        {
+          role: "Fondateur",
+          company: "VIDYANS — QEnabler",
+          type: "Plateforme IA de Qualité Engineering · SaaS",
+          period: "Novembre 2025 – Présent",
+          location: "Paris, France",
+          badge: "Maintenant",
+          color: "#A855F7",
+          highlights: [
+            "Fondé QEnabler pour résoudre un manque critique du marché : les équipes engineering n'ont pas de vue unifiée de leur maturité qualité, rendant difficile la priorisation des améliorations.",
+            "Conception d'une plateforme SaaS IA agrégeant données d'exécution de tests, signaux CI/CD et tendances de défauts pour générer des scorecards de maturité qualité.",
+            "Intégration d'analyse LLM pour identifier automatiquement les patterns de causes racines et prédire les zones à risque avant release.",
+            "Architecture multi-tenant avec dashboards basés sur les rôles pour QA leads, VPs et C-level.",
+          ],
+          tech: ["SaaS", "IA/LLM", "Product Design & Development"],
+        },
+        {
+          role: "QA Lead",
+          company: "Wakeo",
+          type: "SaaS de Visibilité Supply-chain",
+          period: "Janvier 2024 – Octobre 2025",
+          location: "Paris, France",
+          duration: "1 an 10 mois",
+          badge: "2024–25",
+          color: "#3B82F6",
+          highlights: [
+            "Défini et exécuté la stratégie QA de Wakeo from scratch pour un produit SaaS de visibilité supply chain en forte croissance.",
+            "Construit le framework de tests End-to-End from scratch avec Cypress et Gherkin, intégré dans CI/CD — réduisant le temps de cycle de régression et permettant la livraison continue.",
+            "Conçu et implémenté 6 KPIs qualité (densité de défauts, taux d'échappement, couverture d'automatisation, efficacité des tests, MTTD, taux de flakiness) pour les revues produit trimestrielles.",
+            "Mis en place la roadmap QA et OKRs alignés avec les objectifs produit et engineering ; mentoré les squads sur les meilleures pratiques.",
+            "Intégré une culture Quality Assistance dans 3 tribus, réduisant la dépendance au sign-off QA dédié pour les releases à faible risque de 40%.",
+          ],
+          tech: ["Playwright", "Cypress", "Gherkin (Cucumber)", "GCP", "Docker", "GitHub Actions", "Linear", "New Relic", "Notion"],
+        },
+        {
+          role: "QA Manager",
+          company: "Ankorstore",
+          type: "Marketplace B2B · Series C · €365M levés",
+          period: "Juin 2021 – Juin 2023",
+          location: "Paris, France",
+          duration: "2 ans 1 mois",
+          badge: "2021–23",
+          color: "#10B981",
+          highlights: [
+            "Construit la fonction QA from scratch dans une marketplace B2B en forte croissance (Series C, €365M levés) — embauché et scalé l'équipe de 0 à 8 ingénieurs en moins de 18 mois.",
+            "Rédigé et piloté la stratégie QA d'Ankorstore, établissant des quality gates sur 5+ squads produit et définissant des career frameworks pour l'équipe QA.",
+            "Livré le framework E2E Cypress + Gherkin from zero ; suite portée à 300+ scénarios intégrés dans CircleCI, réduisant les défauts critiques post-release de ~25%.",
+            "Défini métriques qualité et dashboards utilisés par le leadership engineering pour monitorer l'efficacité des tests et la couverture d'automatisation par squad.",
+            "Intégré un modèle Quality Assistance dans les tribus, déplaçant la responsabilité QA en amont et réduisant les tests manuels tardifs.",
+          ],
+          tech: ["Cypress", "Gherkin (Cucumber)", "AWS", "JavaScript", "Docker", "GitHub Actions", "Jira", "DataDog", "Notion"],
+        },
+        {
+          role: "Quality Engineering Manager",
+          company: "Egencia (Groupe Expedia)",
+          type: "Voyage d'Affaires Corporate",
+          period: "Mars 2017 – Juin 2021",
+          location: "Île-de-France, France",
+          duration: "4 ans 4 mois",
+          badge: "2017–21",
+          color: "#F59E0B",
+          highlights: [
+            "Piloté la qualité end-to-end de la plateforme de voyage corporate d'Egencia (Groupe Expedia, millions de voyageurs d'affaires).",
+            "Géré les cycles de release sur 3+ lignes produit ; introduit les pratiques shift-left et TDD réduisant le temps de régression de ~30% via CI/CD (Jenkins + AWS).",
+            "Défini et maintenu des dashboards de métriques qualité pour le leadership engineering.",
+            "Géré des équipes QA distribuées en outsourcing sur plusieurs zones géographiques.",
+            "Collaboré directement avec les parties prenantes d'Expedia sur les standards qualité cross-platform.",
+          ],
+          tech: ["Selenium", "Cucumber", "AWS", "JavaScript", "Java", "Docker", "GitHub Actions", "Jira", "DataDog", "Confluence"],
+        },
+        {
+          role: "Senior Software Engineer in Test",
+          company: "Egencia",
+          type: "Voyage d'Affaires Corporate",
+          period: "Octobre 2014 – Mars 2017",
+          location: "Île-de-France, France",
+          duration: "2 ans 6 mois",
+          badge: "2014–17",
+          color: "#6366F1",
+          highlights: [
+            "Conçu et livré un outil de test de régression visuelle UI adopté dans le framework d'automatisation principal.",
+            "Piloté la migration complète des tests C# vers Cucumber Java Selenium (BDD) ; construit et mentoré une équipe de 3 ingénieurs.",
+            "Mis à niveau le framework d'automatisation legacy avec des runs quotidiens déclenchés à chaque déploiement.",
+          ],
+          tech: ["Selenium", "Java", "C#", "BDD", "Cucumber"],
+        },
+        {
+          role: "Quality Engineer",
+          company: "Vision IT Group (@ Egencia)",
+          type: "Consulting QA",
+          period: "Juillet 2013 – Septembre 2014",
+          location: "France",
+          duration: "1 an 3 mois",
+          badge: "2013–14",
+          color: "#94A3B8",
+          highlights: ["Consultant QA intégré chez Egencia ; contribution à l'exécution des plans de test et à la qualité des releases."],
+          tech: [],
+        },
+        {
+          role: "Consultant — Développeur Drupal",
+          company: "Capgemini Consulting",
+          type: "Conseil IT · Projet Voyages SNCF",
+          period: "Septembre 2011 – Mai 2013",
+          location: "France",
+          duration: "1 an 9 mois",
+          badge: "2011–13",
+          color: "#94A3B8",
+          highlights: ["Développeur front-end (Drupal) sur le projet Voyages SNCF ; développement de thèmes, validation UAT et tests de non-régression."],
+          tech: ["Drupal", "PHP", "JavaScript"],
+        },
+      ],
+    },
+    skills: {
+      title: "Expertise Principale",
+      subtitle: "Une boîte à outils complète pour l'excellence du quality engineering",
+      categories: [
+        { name: "Automatisation des Tests", icon: "⚡", color: "#3B82F6", skills: ["Cypress", "Playwright", "Selenium", "Gherkin / BDD", "Cucumber", "Tests de Régression Visuelle", "C#", "Java", "JavaScript", "Python"] },
+        { name: "IA & Données Qualité", icon: "🤖", color: "#A855F7", skills: ["Stratégie IA", "Évaluation LLM (RAGAS)", "Métriques DORA", "Analytics Qualité", "Prédiction de Défauts", "Analyse des Causes Racines"] },
+        { name: "Leadership & Personnes", icon: "👑", color: "#F59E0B", skills: ["Stratégie QA", "Construction d'Équipe (0→8)", "Management Outsourcing", "Quality Mindset Coaching", "OKRs", "Career Frameworks", "Mentorat"] },
+        { name: "Méthodologies", icon: "📐", color: "#10B981", skills: ["Shift-Left Testing", "Test Basé sur les Risques", "TDD / BDD", "Agile / Scrum", "Quality Assistance", "Gestion des Releases", "Plans de Test"] },
+        { name: "Cloud & DevOps", icon: "☁️", color: "#06B6D4", skills: ["AWS", "GCP", "Docker", "GitHub Actions", "Jenkins", "CircleCI", "DataDog", "New Relic"] },
+        { name: "Produit & Design", icon: "🎨", color: "#EC4899", skills: ["Développement SaaS", "UI/UX Design", "Architecture de l'Information", "Stratégie Web Design", "Design d'Interface"] },
+      ],
+    },
+    education: {
+      title: "Formation & Certifications",
+      subtitle: "Socle académique et développement professionnel continu",
+      degree: { school: "CY Cergy Paris Université", degree: "Master (M2) — IUP SIGE", field: "Génie électrique et informatique industrielle", year: "2009–2010" },
+      certs: [
+        { name: "ISTQB", org: "International Software Testing Qualifications Board", icon: "🏆" },
+        { name: "Transforming Your Business with AI", org: "INSEAD", icon: "🤖" },
+        { name: "Visual Elements of User Interface Design", org: "California Institute of the Arts", icon: "🎨" },
+        { name: "Web Design : Stratégie et Architecture de l'Information", org: "California Institute of the Arts", icon: "🌐" },
+        { name: "UI/UX Design Specialization — Niveau I", org: "California Institute of the Arts", icon: "✏️" },
+        { name: "UI/UX Design Specialization — Niveau II", org: "California Institute of the Arts", icon: "✏️" },
+      ],
+    },
+    contact: {
+      title: "Construisons la qualité ensemble",
+      subtitle: "Que vous souhaitiez scaler votre équipe engineering, améliorer vos pratiques qualité ou explorer le QA piloté par l'IA — je serais ravi d'échanger.",
+      linkedin: "Me rejoindre sur LinkedIn",
+    },
+    footer: { rights: "Tous droits réservés", sub: "Ouvert aux opportunités en France et à l'international · Français · Anglais · Tamoul" },
+  },
+};
+
+/* ════════════════════════════════════════
+   STATE
+════════════════════════════════════════ */
+let lang = 'en';
+
+/* ════════════════════════════════════════
+   TYPED ROLE ANIMATION
+════════════════════════════════════════ */
+let typedIndex = 0, typedStr = '', typedDeleting = false, typedTimer = null;
+
+function typedTick() {
+  const roles = CONTENT[lang].hero.roles;
+  const current = roles[typedIndex % roles.length];
+  const el = document.getElementById('typed-text');
+  if (!el) return;
+
+  if (!typedDeleting && typedStr.length < current.length) {
+    typedStr = current.slice(0, typedStr.length + 1);
+    typedTimer = setTimeout(typedTick, 55);
+  } else if (!typedDeleting && typedStr.length === current.length) {
+    typedTimer = setTimeout(() => { typedDeleting = true; typedTick(); }, 1800);
+  } else if (typedDeleting && typedStr.length > 0) {
+    typedStr = typedStr.slice(0, -1);
+    typedTimer = setTimeout(typedTick, 30);
+  } else {
+    typedDeleting = false;
+    typedIndex = (typedIndex + 1) % roles.length;
+    typedTimer = setTimeout(typedTick, 100);
+  }
+  el.textContent = typedStr;
+}
+
+function resetTyped() {
+  clearTimeout(typedTimer);
+  typedStr = '';
+  typedDeleting = false;
+  typedTick();
+}
+
+/* ════════════════════════════════════════
+   ESCAPE HTML
+════════════════════════════════════════ */
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/* ════════════════════════════════════════
+   RENDER FUNCTIONS
+════════════════════════════════════════ */
+function renderNav() {
+  const C = CONTENT[lang];
+  document.querySelectorAll('.nav-link[data-key]').forEach(a => {
+    const key = a.getAttribute('data-key');
+    if (C.nav[key]) a.textContent = C.nav[key];
+  });
+  document.getElementById('lang-toggle').textContent = C.langToggle;
+}
+
+function renderHero() {
+  const C = CONTENT[lang].hero;
+  document.getElementById('hero-desc').textContent = C.description;
+  document.getElementById('hero-cta').textContent = C.cta;
+  document.getElementById('hero-cta2').textContent = C.ctaSecondary;
+}
+
+function renderStats() {
+  const C = CONTENT[lang];
+  document.getElementById('stats-grid').innerHTML = C.stats.map(s => `
+    <div class="stat-card">
+      <div class="stat-value">${esc(s.value)}</div>
+      <div class="stat-label">${esc(s.label)}</div>
+    </div>
+  `).join('');
+}
+
+function renderAbout() {
+  const C = CONTENT[lang].about;
+  document.getElementById('about-subtitle').textContent = C.subtitle;
+  document.getElementById('about-bio1').textContent = C.bio;
+  document.getElementById('about-bio2').textContent = C.bio2;
+  document.getElementById('about-pillars').innerHTML = C.pillars.map(p => `
+    <div class="pillar-card">
+      <div class="pillar-icon">${p.icon}</div>
+      <div class="pillar-title">${esc(p.title)}</div>
+      <div class="pillar-desc">${esc(p.desc)}</div>
+    </div>
+  `).join('');
+}
+
+function renderExperience() {
+  const C = CONTENT[lang].experience;
+  document.getElementById('exp-title').textContent = C.title;
+  document.getElementById('exp-subtitle').textContent = C.subtitle;
+  document.getElementById('exp-list').innerHTML = C.jobs.map((job, i) => `
+    <div class="exp-card" style="border-left:3px solid ${job.color}">
+      <button class="exp-header" onclick="toggleExp(${i})" aria-expanded="false" id="exp-btn-${i}">
+        <div class="exp-header-row">
+          <div class="exp-meta">
+            <div class="exp-badge-row">
+              <span class="exp-badge" style="background:${job.color}22;color:${job.color};border:1px solid ${job.color}44">${esc(job.badge)}</span>
+              ${job.duration ? `<span class="exp-duration">${esc(job.duration)}</span>` : ''}
+            </div>
+            <h3 class="exp-role">${esc(job.role)}</h3>
+            <div class="exp-company" style="color:${job.color}">${esc(job.company)}</div>
+            <div class="exp-type">${esc(job.type)} · ${esc(job.location)}</div>
+            <div class="exp-period">${esc(job.period)}</div>
+          </div>
+          <span class="exp-chevron" id="exp-chev-${i}">▾</span>
+        </div>
+        ${job.tech && job.tech.length ? `
+          <div class="exp-tech">
+            ${job.tech.map(t => `<span class="tech-tag">${esc(t)}</span>`).join('')}
+          </div>` : ''}
+      </button>
+      <div class="exp-details" id="exp-details-${i}">
+        <ul class="exp-highlights">
+          ${job.highlights.map(h => `
+            <li>
+              <span class="exp-bullet" style="color:${job.color}">▸</span>
+              <span>${esc(h)}</span>
+            </li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleExp(i) {
+  const details = document.getElementById(`exp-details-${i}`);
+  const chev = document.getElementById(`exp-chev-${i}`);
+  const btn = document.getElementById(`exp-btn-${i}`);
+  const isOpen = details.classList.contains('open');
+  details.classList.toggle('open', !isOpen);
+  chev.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', String(!isOpen));
+}
+
+function renderSkills() {
+  const C = CONTENT[lang].skills;
+  document.getElementById('skills-title').textContent = C.title;
+  document.getElementById('skills-subtitle').textContent = C.subtitle;
+  document.getElementById('skills-grid').innerHTML = C.categories.map(cat => `
+    <div class="skill-cat"
+      onmouseover="this.style.boxShadow='0 8px 32px ${cat.color}33'"
+      onmouseout="this.style.boxShadow=''">
+      <div class="skill-cat-header">
+        <span class="skill-cat-icon" style="background:${cat.color}22">${cat.icon}</span>
+        <span class="skill-cat-name" style="color:${cat.color}">${esc(cat.name)}</span>
+      </div>
+      <div class="skill-tags">
+        ${cat.skills.map(s => `<span class="skill-tag">${esc(s)}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderEducation() {
+  const C = CONTENT[lang].education;
+  document.getElementById('edu-title').textContent = C.title;
+  document.getElementById('edu-subtitle').textContent = C.subtitle;
+  const d = C.degree;
+  document.getElementById('edu-grid').innerHTML = `
+    <div class="degree-card">
+      <div class="degree-emoji">🎓</div>
+      <div class="degree-label">Education</div>
+      <div class="degree-school">${esc(d.school)}</div>
+      <div class="degree-name">${esc(d.degree)}</div>
+      <div class="degree-field">${esc(d.field)}</div>
+      <div class="degree-year">${esc(d.year)}</div>
+    </div>
+    <div class="certs-grid">
+      ${C.certs.map(c => `
+        <div class="cert-card">
+          <div class="cert-icon">${c.icon}</div>
+          <div class="cert-name">${esc(c.name)}</div>
+          <div class="cert-org">${esc(c.org)}</div>
+        </div>`).join('')}
+    </div>
+  `;
+}
+
+function renderContact() {
+  const C = CONTENT[lang].contact;
+  document.getElementById('contact-title').textContent = C.title;
+  document.getElementById('contact-sub').textContent = C.subtitle;
+  document.getElementById('contact-linkedin-text').textContent = '🔗 ' + C.linkedin;
+}
+
+function renderFooter() {
+  const C = CONTENT[lang].footer;
+  document.getElementById('footer-rights').textContent = C.rights;
+  document.getElementById('footer-sub').textContent = C.sub;
+}
+
+function renderAll() {
+  renderNav();
+  renderHero();
+  renderStats();
+  renderAbout();
+  renderExperience();
+  renderSkills();
+  renderEducation();
+  renderContact();
+  renderFooter();
+}
+
+/* ════════════════════════════════════════
+   LANGUAGE TOGGLE
+════════════════════════════════════════ */
+document.getElementById('lang-toggle').addEventListener('click', () => {
+  lang = lang === 'en' ? 'fr' : 'en';
+  renderAll();
+  resetTyped();
+});
+
+/* ════════════════════════════════════════
+   SMOOTH SCROLL
+════════════════════════════════════════ */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  e.preventDefault();
+  const id = a.getAttribute('href').slice(1);
+  const target = document.getElementById(id);
+  if (target) target.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('main-nav').classList.remove('open');
+});
+
+/* ════════════════════════════════════════
+   MOBILE NAV
+════════════════════════════════════════ */
+document.getElementById('nav-toggle').addEventListener('click', () => {
+  document.getElementById('main-nav').classList.toggle('open');
+});
+
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.07 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+document.getElementById('year').textContent = new Date().getFullYear();
+renderAll();
+typedTick();
+</script>
+</body>
 </html>
