@@ -402,6 +402,85 @@
       .exp-details { padding: 0 18px 18px; }
     }
 
+    /* ── Projects ── */
+    .projects-featured {
+      background: linear-gradient(135deg, rgba(168,85,247,.08), rgba(59,130,246,.08));
+      border: 1px solid rgba(168,85,247,.25);
+      border-radius: 24px; padding: 32px 36px;
+      margin-bottom: 20px;
+      display: flex; gap: 36px; align-items: flex-start;
+      transition: box-shadow 0.3s;
+    }
+    .projects-featured:hover { box-shadow: 0 8px 48px rgba(168,85,247,.15); }
+    .proj-featured-left { flex: 1; min-width: 0; }
+    .proj-featured-right { flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+    .proj-startup-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: linear-gradient(135deg, rgba(168,85,247,.2), rgba(59,130,246,.2));
+      border: 1px solid rgba(168,85,247,.4);
+      color: var(--purple); font-size: 11px; font-weight: 700;
+      padding: 4px 12px; border-radius: 20px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 12px; display: inline-block;
+    }
+    .proj-featured-title {
+      font-size: 26px; font-weight: 800; color: var(--text-bright);
+      margin: 0 0 8px; line-height: 1.2;
+    }
+    .proj-featured-desc { font-size: 15px; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; }
+    .proj-tech-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .proj-tech-chip {
+      font-size: 11px; font-weight: 600;
+      background: rgba(168,85,247,.12); color: var(--purple);
+      border: 1px solid rgba(168,85,247,.25);
+      padding: 3px 10px; border-radius: 20px;
+    }
+    .proj-link-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 600; text-decoration: none;
+      padding: 9px 18px; border-radius: 50px;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .proj-link-primary {
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      color: white;
+    }
+    .proj-link-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(168,85,247,.4); }
+    .proj-link-secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--slate); border: 1px solid rgba(255,255,255,.1);
+    }
+    .proj-link-secondary:hover { color: var(--text); border-color: rgba(255,255,255,.25); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .proj-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 18px; padding: 24px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .proj-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(59,130,246,.1); border-color: rgba(59,130,246,.2); }
+    .proj-card-header { display: flex; align-items: center; justify-content: space-between; }
+    .proj-card-icon { font-size: 22px; }
+    .proj-card-arrow { font-size: 16px; color: var(--slate-dark); transition: transform 0.2s; }
+    .proj-card:hover .proj-card-arrow { transform: translate(3px, -3px); color: var(--blue); }
+    .proj-card-name { font-size: 16px; font-weight: 700; color: var(--text); }
+    .proj-card-desc { font-size: 13px; color: var(--slate); line-height: 1.6; flex: 1; }
+    .proj-card-footer { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+    .proj-lang-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .proj-lang-label { font-size: 12px; color: var(--slate-dim); }
+
+    @media (max-width: 720px) {
+      .projects-featured { flex-direction: column; gap: 20px; }
+      .proj-featured-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+    }
+
     /* ── Scroll-reveal ── */
     .reveal {
       opacity: 0;
@@ -425,6 +504,7 @@
       <a href="#about" class="nav-link" data-key="about">About</a>
       <a href="#experience" class="nav-link" data-key="experience">Experience</a>
       <a href="#skills" class="nav-link" data-key="skills">Skills</a>
+      <a href="#projects" class="nav-link" data-key="projects">Projects</a>
       <a href="#education" class="nav-link" data-key="education">Education</a>
       <a href="#contact" class="nav-link" data-key="contact">Contact</a>
       <button id="lang-toggle">FR</button>
@@ -504,6 +584,18 @@
   </div>
 </section>
 
+<!-- ── PROJECTS ── -->
+<section id="projects" class="section-alt reveal">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title" id="proj-title">Projects &amp; Open Source</h2>
+      <p class="section-sub" id="proj-subtitle">From startup product to automation frameworks — things I've built</p>
+    </div>
+    <div id="proj-featured"></div>
+    <div class="projects-grid" id="proj-grid"></div>
+  </div>
+</section>
+
 <!-- ── EDUCATION ── -->
 <section id="education" class="reveal">
   <div class="section-inner">
@@ -542,7 +634,7 @@
 ════════════════════════════════════════ */
 const CONTENT = {
   en: {
-    nav: { about: "About", experience: "Experience", skills: "Skills", education: "Education", contact: "Contact" },
+    nav: { about: "About", experience: "Experience", skills: "Skills", projects: "Projects", education: "Education", contact: "Contact" },
     langToggle: "FR",
     hero: {
       roles: ["Head of Quality Engineering", "QA Transformation Leader", "AI Quality Strategist", "Engineering Excellence Catalyst"],
@@ -712,6 +804,62 @@ const CONTENT = {
         { name: "UI/UX Design Specialization — Level II", org: "California Institute of the Arts", icon: "✏️" },
       ],
     },
+    projects: {
+      title: "Projects & Open Source",
+      subtitle: "From startup product to automation frameworks — things I've built",
+      featured: {
+        badge: "🚀 Startup",
+        name: "QEnabler",
+        desc: "AI-driven SaaS platform that aggregates CI/CD signals, test execution data and defect trends to generate quality maturity scorecards across engineering squads. Built with a TypeScript/Node backend, React frontend, Python FastAPI AI service, and Docusaurus docs — fully Dockerized.",
+        tech: ["TypeScript", "Node.js", "React", "Python", "FastAPI", "PostgreSQL", "Docker", "OpenAI"],
+        website: "https://qenabler.com",
+        github: "https://github.com/nalanraj/qenabler",
+        websiteLabel: "🌐 qenabler.com",
+        githubLabel: "View on GitHub",
+      },
+      repos: [
+        {
+          icon: "🎭",
+          name: "playwright-petClinic",
+          desc: "End-to-end test automation framework built with Playwright for the Spring PetClinic application. JavaScript-based test scenarios covering key user flows.",
+          lang: "JavaScript",
+          langColor: "#f1e05a",
+          url: "https://github.com/nalanraj/playwright-petClinic",
+        },
+        {
+          icon: "🌲",
+          name: "cypress-pet-clinic",
+          desc: "E2E automation framework using Cypress for the PetClinic demo app. Demonstrates real-world test architecture, selectors, and assertion patterns.",
+          lang: "JavaScript",
+          langColor: "#f1e05a",
+          url: "https://github.com/nalanraj/cypress-pet-clinic",
+        },
+        {
+          icon: "🎨",
+          name: "pma-theme",
+          desc: "Custom Drupal 6 distribution theme for the PMA platform. Frontend theming, template overrides and layout development in PHP.",
+          lang: "PHP",
+          langColor: "#4F5D95",
+          url: "https://github.com/nalanraj/pma-theme",
+        },
+        {
+          icon: "🛒",
+          name: "marketstore-v2",
+          desc: "Full-stack marketplace web application built with PHP, Twig and JavaScript. Version 2 of a custom e-commerce platform with product listings and storefront features.",
+          lang: "PHP",
+          langColor: "#4F5D95",
+          url: "https://github.com/nalanraj/marketstore-v2",
+        },
+        {
+          icon: "🛕",
+          name: "venkateswaratemplefrance",
+          desc: "Website for the Venkateswara Temple in France — a community project built with PHP, Twig and JavaScript to serve the Tamil Hindu community with temple info, events and services.",
+          lang: "PHP",
+          langColor: "#4F5D95",
+          url: "https://github.com/nalanraj/venkateswaratemplefrance",
+        },
+      ],
+    },
     contact: {
       title: "Let's build quality together",
       subtitle: "Whether you're scaling your engineering team, improving quality practices, or exploring AI-driven QA — I'd love to connect and exchange ideas.",
@@ -722,7 +870,7 @@ const CONTENT = {
 
   /* ─── FRENCH ─── */
   fr: {
-    nav: { about: "À propos", experience: "Expérience", skills: "Compétences", education: "Formation", contact: "Contact" },
+    nav: { about: "À propos", experience: "Expérience", skills: "Compétences", projects: "Projets", education: "Formation", contact: "Contact" },
     langToggle: "EN",
     hero: {
       roles: ["Responsable Quality Engineering", "Leader Transformation QA", "Stratège IA & Qualité", "Catalyseur d'Excellence Engineering"],
@@ -887,6 +1035,62 @@ const CONTENT = {
         { name: "Web Design : Stratégie et Architecture de l'Information", org: "California Institute of the Arts", icon: "🌐" },
         { name: "UI/UX Design Specialization — Niveau I", org: "California Institute of the Arts", icon: "✏️" },
         { name: "UI/UX Design Specialization — Niveau II", org: "California Institute of the Arts", icon: "✏️" },
+      ],
+    },
+    projects: {
+      title: "Projets & Open Source",
+      subtitle: "Du produit startup aux frameworks d'automatisation — ce que j'ai construit",
+      featured: {
+        badge: "🚀 Startup",
+        name: "QEnabler",
+        desc: "Plateforme SaaS IA agrégeant signaux CI/CD, données d'exécution de tests et tendances de défauts pour générer des scorecards de maturité qualité par squad. Backend TypeScript/Node, frontend React, service IA Python FastAPI, docs Docusaurus — entièrement Dockerisé.",
+        tech: ["TypeScript", "Node.js", "React", "Python", "FastAPI", "PostgreSQL", "Docker", "OpenAI"],
+        website: "https://qenabler.com",
+        github: "https://github.com/nalanraj/qenabler",
+        websiteLabel: "🌐 qenabler.com",
+        githubLabel: "Voir sur GitHub",
+      },
+      repos: [
+        {
+          icon: "🎭",
+          name: "playwright-petClinic",
+          desc: "Framework d'automatisation E2E avec Playwright pour l'application Spring PetClinic. Scénarios JavaScript couvrant les principaux parcours utilisateurs.",
+          lang: "JavaScript",
+          langColor: "#f1e05a",
+          url: "https://github.com/nalanraj/playwright-petClinic",
+        },
+        {
+          icon: "🌲",
+          name: "cypress-pet-clinic",
+          desc: "Framework d'automatisation E2E avec Cypress pour PetClinic. Démontre une architecture de tests réelle avec sélecteurs et patterns d'assertion.",
+          lang: "JavaScript",
+          langColor: "#f1e05a",
+          url: "https://github.com/nalanraj/cypress-pet-clinic",
+        },
+        {
+          icon: "🎨",
+          name: "pma-theme",
+          desc: "Thème Drupal 6 personnalisé pour la distribution PMA. Développement frontend, surcharges de templates et mise en page en PHP.",
+          lang: "PHP",
+          langColor: "#4F5D95",
+          url: "https://github.com/nalanraj/pma-theme",
+        },
+        {
+          icon: "🛒",
+          name: "marketstore-v2",
+          desc: "Application marketplace full-stack en PHP, Twig et JavaScript. Version 2 d'une plateforme e-commerce personnalisée avec gestion de produits et vitrine marchande.",
+          lang: "PHP",
+          langColor: "#4F5D95",
+          url: "https://github.com/nalanraj/marketstore-v2",
+        },
+        {
+          icon: "🛕",
+          name: "venkateswaratemplefrance",
+          desc: "Site web du Temple Venkateswara en France — projet communautaire en PHP, Twig et JavaScript au service de la communauté hindoue tamoule avec infos, événements et services du temple.",
+          lang: "PHP",
+          langColor: "#4F5D95",
+          url: "https://github.com/nalanraj/venkateswaratemplefrance",
+        },
       ],
     },
     contact: {
@@ -1083,6 +1287,48 @@ function renderEducation() {
   `;
 }
 
+function renderProjects() {
+  const C = CONTENT[lang].projects;
+  document.getElementById('proj-title').textContent = C.title;
+  document.getElementById('proj-subtitle').textContent = C.subtitle;
+
+  const f = C.featured;
+  document.getElementById('proj-featured').innerHTML = `
+    <div class="projects-featured">
+      <div class="proj-featured-left">
+        <span class="proj-startup-badge">${f.badge}</span>
+        <h3 class="proj-featured-title">${esc(f.name)}</h3>
+        <p class="proj-featured-desc">${esc(f.desc)}</p>
+        <div class="proj-tech-row">
+          ${f.tech.map(t => `<span class="proj-tech-chip">${esc(t)}</span>`).join('')}
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="${f.website}" target="_blank" rel="noopener noreferrer" class="proj-link-btn proj-link-primary">${esc(f.websiteLabel)}</a>
+          <a href="${f.github}" target="_blank" rel="noopener noreferrer" class="proj-link-btn proj-link-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            ${esc(f.githubLabel)}
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('proj-grid').innerHTML = C.repos.map(r => `
+    <a href="${r.url}" target="_blank" rel="noopener noreferrer" class="proj-card">
+      <div class="proj-card-header">
+        <span class="proj-card-icon">${r.icon}</span>
+        <span class="proj-card-arrow">↗</span>
+      </div>
+      <div class="proj-card-name">${esc(r.name)}</div>
+      <div class="proj-card-desc">${esc(r.desc)}</div>
+      <div class="proj-card-footer">
+        <span class="proj-lang-dot" style="background:${r.langColor}"></span>
+        <span class="proj-lang-label">${esc(r.lang)}</span>
+      </div>
+    </a>
+  `).join('');
+}
+
 function renderContact() {
   const C = CONTENT[lang].contact;
   document.getElementById('contact-title').textContent = C.title;
@@ -1103,6 +1349,7 @@ function renderAll() {
   renderAbout();
   renderExperience();
   renderSkills();
+  renderProjects();
   renderEducation();
   renderContact();
   renderFooter();
