@@ -481,6 +481,16 @@
       .proj-featured-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
     }
 
+    /* ── Section anchor link ── */
+    .section-anchor-wrap { display: inline-flex; align-items: center; gap: 10px; }
+    .section-anchor {
+      opacity: 0; transition: opacity 0.2s;
+      color: var(--slate-dark); text-decoration: none;
+      font-size: 22px; font-weight: 400; line-height: 1;
+    }
+    .section-anchor:hover { color: var(--blue); }
+    .section-anchor-wrap:hover .section-anchor { opacity: 1; }
+
     /* ── Scroll-reveal ── */
     .reveal {
       opacity: 0;
@@ -588,7 +598,12 @@
 <section id="projects" class="section-alt reveal">
   <div class="section-inner">
     <div class="section-head">
-      <h2 class="section-title" id="proj-title">Projects &amp; Open Source</h2>
+      <h2 class="section-title">
+        <span class="section-anchor-wrap">
+          <span id="proj-title">Projects &amp; Open Source</span>
+          <a href="#projects" class="section-anchor" title="Link to this section">#</a>
+        </span>
+      </h2>
       <p class="section-sub" id="proj-subtitle">From startup product to automation frameworks — things I've built</p>
     </div>
     <div id="proj-featured"></div>
